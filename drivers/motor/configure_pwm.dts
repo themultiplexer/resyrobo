@@ -1,0 +1,33 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+        fragment@0 {
+                target = <&soc>;
+                __overlay__ {
+                left-motor-pwm {
+                        side = "left";
+                        compatible = "motor";
+                        pwms = <&pwm 0 10000000 0>;
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&pwm0_gpio18>;
+                };
+
+                right-motor-pwm {
+                        side = "right";
+                        compatible = "motor";
+                        pwms = <&pwm 1 10000000 0>;
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&pwm1_gpio13>;
+                };
+                };
+        };
+
+        fragment@1 {
+                target = <&pwm>;
+                frag2: __overlay__ {
+                        status = "okay";
+                };
+        };
+};
+
